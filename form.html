@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Detail Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f1f8e9, #aed581);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-container {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #33691e;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+      color: #558b2f;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #c5e1a5;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #8bc34a;
+      box-shadow: 0 0 5px rgba(139, 195, 74, 0.5);
+    }
+
+    .checkbox-group,
+    .radio-group {
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      font-weight: normal;
+      display: block;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #8bc34a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #689f38;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Student Detail Form</h2>
+    <form id="studentForm">
+      <label for="name">Student Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="department">Department:</label>
+      <select id="department" name="department" required>
+        <option value="">--Select Department--</option>
+        <option value="CSE">CSE</option>
+        <option value="IT">IT</option>
+        <option value="ECE">ECE</option>
+        <option value="EEE">EEE</option>
+      </select>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+      <label>Transport:</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="transport" value="College Bus"> College Bus</label>
+        <label><input type="checkbox" name="transport" value="Out Bus"> Out Bus</label>
+        <label><input type="checkbox" name="transport" value="Hostel"> Hostel</label>
+        <label><input type="checkbox" name="transport" value="Own Vehicle"> Own Vehicle</label>
+      </div>
+
+      <label>Gender:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female" required> Female</label>
+        <label><input type="radio" name="gender" value="Other" required> Other</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("studentForm").addEventListener("submit", function(e) {
+      e.preventDefault(); 
+      let name = document.getElementById("name").value;
+      let department = document.getElementById("department").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+
+      let transports = [];
+      document.querySelectorAll('input[name="transport"]:checked').forEach(cb => {
+        transports.push(cb.value);
+      });
+
+      let gender = document.querySelector('input[name="gender"]:checked').value;
+
+      console.log("Student Details:");
+      console.log("Name:", name);
+      console.log("Department:", department);
+      console.log("Email:", email);
+      console.log("Phone Number:", phone);
+      console.log("Transport:", transports.join(", "));
+      console.log("Gender:", gender);
+    });
+  </script>
+
+</body>
+</html>
